@@ -7,7 +7,7 @@ All notable changes to the Naming skill are documented here.
 ### Added
 
 - Initial `developing-brand-names` skill controller.
-- Ten-phase end-to-end naming workflow.
+- End-to-end naming workflow with gates from Phase 0 through Phase 10.
 - Naming brief, strategic core, category enemy, paradigm shift, architecture, and decision-authority contracts.
 - Competitive Naming Map, Collision Map, saturation registers, white-space analysis, and persistent `NO_GO_REGISTER`.
 - Semantic territories, customer/proprietary language banks, cultural-code map, and phonetic code.
