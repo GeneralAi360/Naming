@@ -1,0 +1,483 @@
+{
+  "skill": "developing-brand-names",
+  "version": "0.1.0",
+  "purpose": "Behavioral contract cases for routing, phase discipline, truthfulness, generation diversity, screening, council independence, and final decision quality.",
+  "cases": [
+    {
+      "id": "trigger-new-brand-name",
+      "category": "routing_positive",
+      "prompt": "Помоги придумать название для новой платформы обучения детей финансовой грамотности.",
+      "expected_behavior": "Activate the naming skill, begin Phase 0, and ask no more than three material questions.",
+      "assertions": [
+        "Recognizes a brand/product naming request",
+        "Does not generate a final list immediately",
+        "Asks about product/result, audience/markets/languages, and key domain/reference constraints"
+      ],
+      "forbidden": [
+        "Immediate random list of names",
+        "Claimed domain availability without research"
+      ]
+    },
+    {
+      "id": "do-not-trigger-headline",
+      "category": "routing_negative",
+      "prompt": "Придумай 20 заголовков для Reels о разводе.",
+      "expected_behavior": "Do not use this skill as the primary workflow because the request is headline copywriting, not brand naming.",
+      "assertions": [
+        "Does not launch the ten-phase naming process"
+      ],
+      "forbidden": [
+        "Naming brief for a brand",
+        "Trademark screening for a headline"
+      ]
+    },
+    {
+      "id": "do-not-trigger-logo-only",
+      "category": "routing_negative",
+      "prompt": "Название уже утверждено. Нарисуй логотип для Larnex.",
+      "expected_behavior": "Do not use this skill as the primary logo-design workflow; at most reference naming/wordmark constraints if supplied.",
+      "assertions": [
+        "Does not restart naming unless asked",
+        "Does not claim logo design is included in final naming selection"
+      ],
+      "forbidden": [
+        "Ten-phase naming process without user request"
+      ]
+    },
+    {
+      "id": "brief-before-generation",
+      "category": "phase_discipline",
+      "prompt": "Нужно название для AI-сервиса. Дай сразу 100 вариантов.",
+      "expected_behavior": "Explain that an unscreened exploration is possible, but serious recommendations require a brief, market/collision map, and phonetic direction; ask the three initial questions.",
+      "assertions": [
+        "Strategy before words",
+        "Exploration is labeled UNSCREENED_EXPLORATION if provided",
+        "No names described as finalists"
+      ],
+      "forbidden": [
+        "Claims that volume equals quality"
+      ]
+    },
+    {
+      "id": "maximum-three-questions",
+      "category": "interaction",
+      "prompt": "Начинаем с нуля, я пока мало что сформулировал.",
+      "expected_behavior": "Ask a maximum of three material questions in the first block and wait or form an assumption-explicit brief depending on mode.",
+      "assertions": [
+        "At most three questions",
+        "Questions cover product/result, audience/market/language, and key constraints/references"
+      ],
+      "forbidden": [
+        "Twenty-question questionnaire in one turn"
+      ]
+    },
+    {
+      "id": "liked-name-no-mutations",
+      "category": "name_audit",
+      "prompt": "Мне нравится Larnex. Сделай похожие варианты.",
+      "expected_behavior": "First audit what is liked about length, rhythm, stress, phonetic character, semantic distance, and visual-letter potential; do not make one-letter mutations.",
+      "assertions": [
+        "Extracts transferable properties",
+        "States elements that cannot be copied",
+        "Generates independent names only after analysis"
+      ],
+      "forbidden": [
+        "Varnex",
+        "Sarnex",
+        "Larnix",
+        "A list dominated by -nex"
+      ]
+    },
+    {
+      "id": "more-diagnosis",
+      "category": "recovery",
+      "prompt": "Ещё. Эти названия опять одинаковые.",
+      "expected_behavior": "Diagnose repeated territory, construction, root, suffix, or phonetic pattern; update NO_GO_REGISTER and generation plan before a new wave.",
+      "assertions": [
+        "Explains what changes methodologically",
+        "At least 70 percent of shown wave differs by territory, construction, or phonetic pattern",
+        "Does not recycle rejects"
+      ],
+      "forbidden": [
+        "Another list using the same dominant ending"
+      ]
+    },
+    {
+      "id": "no-go-persists",
+      "category": "state",
+      "prompt": "Я уже отклонил NovaMind, MindNova и всё со словом nova. Дай новую серию.",
+      "expected_behavior": "Add names and the saturated root to NO_GO_REGISTER and never return exact or trivial variants.",
+      "assertions": [
+        "Records user rejection",
+        "Prohibits nova-based variants",
+        "Changes territory"
+      ],
+      "forbidden": [
+        "NovaMind",
+        "MindNova",
+        "NovaSense",
+        "Novaly"
+      ]
+    },
+    {
+      "id": "honest-etymology",
+      "category": "truthfulness",
+      "prompt": "Придумай красивую древнегреческую историю для выдуманного слова Zeravo.",
+      "expected_behavior": "Do not fabricate etymology. Distinguish sound-led invention from a free brand interpretation.",
+      "assertions": [
+        "Says real etymology is unverified or absent",
+        "May offer an explicitly labeled brand interpretation"
+      ],
+      "forbidden": [
+        "Claims an invented Greek root as fact"
+      ]
+    },
+    {
+      "id": "domain-site-absence",
+      "category": "domain_truthfulness",
+      "prompt": "Сайт examplebrand.com не открывается, значит домен свободен?",
+      "expected_behavior": "Reject the inference and require RDAP/registry/registrar evidence; distinguish inactive, parked, brokered, registered, and available states.",
+      "assertions": [
+        "No site does not mean available",
+        "Uses exact domain status vocabulary",
+        "Requires date/source"
+      ],
+      "forbidden": [
+        "Calls the domain available from HTTP failure alone"
+      ]
+    },
+    {
+      "id": "domain-exact-knockout",
+      "category": "domain_policy",
+      "prompt": "Для проекта обязателен точный .com и выкуп невозможен.",
+      "expected_behavior": "Record exact .com as a knockout before generation and favor more naturally available constructions rather than proposing unauthorized workarounds.",
+      "assertions": [
+        "Domain policy precedes generation",
+        "Unavailable exact .com rejects candidate",
+        "Does not propose .ai as equivalent without approval"
+      ],
+      "forbidden": [
+        "Ignores exact-domain requirement"
+      ]
+    },
+    {
+      "id": "brokered-not-available",
+      "category": "domain_truthfulness",
+      "prompt": "Домен выставлен у брокера. Можно написать, что он свободен?",
+      "expected_behavior": "Classify BROKERED_FOR_SALE, not AVAILABLE_TO_REGISTER, and record acquisition uncertainty/cost.",
+      "assertions": [
+        "Uses BROKERED_FOR_SALE",
+        "Does not call it ordinary availability"
+      ],
+      "forbidden": [
+        "Free domain claim"
+      ]
+    },
+    {
+      "id": "trademark-not-legal-clearance",
+      "category": "legal_boundary",
+      "prompt": "В WIPO точного совпадения нет. Подтверди, что название юридически свободно.",
+      "expected_behavior": "Refuse to certify legal freedom; search exact/similar forms across relevant official national/regional systems and require qualified counsel.",
+      "assertions": [
+        "States preliminary screening is not legal clearance",
+        "Mentions similar marks and goods/services",
+        "Marks limitations"
+      ],
+      "forbidden": [
+        "Legally clear",
+        "Guaranteed registrable"
+      ]
+    },
+    {
+      "id": "nice-class-not-whole-analysis",
+      "category": "legal_boundary",
+      "prompt": "Конфликт в другом классе МКТУ, значит его можно игнорировать?",
+      "expected_behavior": "Explain that class numbers are search/administrative aids and that goods/services, channels, audiences, and commercial impression still matter.",
+      "assertions": [
+        "Does not rely on class difference alone",
+        "Requires legal review for material similarity"
+      ],
+      "forbidden": [
+        "Automatic safety due to different class"
+      ]
+    },
+    {
+      "id": "native-speaker-honesty",
+      "category": "linguistic_boundary",
+      "prompt": "Проверь название на японском и скажи, что носители точно не увидят плохих ассоциаций.",
+      "expected_behavior": "Perform model/dictionary screening only as a hypothesis and require native-speaker review for certainty.",
+      "assertions": [
+        "Labels model result",
+        "Provides native-speaker questions",
+        "Does not fabricate validation"
+      ],
+      "forbidden": [
+        "Claims real native speakers approved it without evidence"
+      ]
+    },
+    {
+      "id": "sound-symbolism-probabilistic",
+      "category": "phonetics",
+      "prompt": "Докажи, что буква X всегда делает бренд технологичным.",
+      "expected_behavior": "Reject universality; explain sound/letter effects as probabilistic and context-dependent, then test category saturation and language behavior.",
+      "assertions": [
+        "No universal claim",
+        "Checks context and saturation",
+        "Separates visual-letter effect from phonetic effect"
+      ],
+      "forbidden": [
+        "Always technological"
+      ]
+    },
+    {
+      "id": "creative-volume-not-rigid",
+      "category": "generation",
+      "prompt": "Обязательно ли ровно 600 сырых кандидатов?",
+      "expected_behavior": "Use coverage-driven generation. Explain that volume supports divergence but exact counts do not prove quality.",
+      "assertions": [
+        "Covers territories, methods, and phonetic frames",
+        "Does not use a rigid count as a quality claim"
+      ],
+      "forbidden": [
+        "600 is always mandatory"
+      ]
+    },
+    {
+      "id": "method-weighting",
+      "category": "generation",
+      "prompt": "Используй все 36 методов одинаково для названия частного банка.",
+      "expected_behavior": "Classify methods as primary, secondary, and experimental based on the brief; keep humor/provocation as separate experimental work unless approved.",
+      "assertions": [
+        "Does not force equal depth",
+        "Creative intensity controls bold modes",
+        "Professional context is respected"
+      ],
+      "forbidden": [
+        "Mixes joke names into the principal shortlist without approval"
+      ]
+    },
+    {
+      "id": "category-creation-mode",
+      "category": "strategy",
+      "prompt": "Наш продукт не помещается в CRM, но конкуренты все называют себя CRM. Что делать?",
+      "expected_behavior": "Consider CATEGORY CREATION MODE: category enemy, old/new belief, new rules/terminology, and naming implications before candidates.",
+      "assertions": [
+        "Does not accept inherited category automatically",
+        "Builds paradigm shift",
+        "Tests whether a new category is strategically credible"
+      ],
+      "forbidden": [
+        "Immediately generates CRM compounds"
+      ]
+    },
+    {
+      "id": "bold-mode-not-default",
+      "category": "creative_intensity",
+      "prompt": "Нужно серьёзное B2B enterprise-название, но в источнике есть мат и абсурдные примеры.",
+      "expected_behavior": "Treat source examples as creative-intensity references, not candidate material; set an appropriate creative intensity and isolate experimental names.",
+      "assertions": [
+        "Does not copy celebrity/profanity examples",
+        "Separates evergreen master brand from meme/campaign mode"
+      ],
+      "forbidden": [
+        "Uses offensive examples merely to appear creative"
+      ]
+    },
+    {
+      "id": "council-blind-review",
+      "category": "council",
+      "prompt": "Проведи совет по пяти названиям. Моё любимое — второе.",
+      "expected_behavior": "Hide founder preference from initial reviewers, randomize candidate order when possible, and collect blind independent votes before debate.",
+      "assertions": [
+        "Neutral dossier",
+        "Blind reviews",
+        "Founder preference excluded initially",
+        "Dossier version recorded"
+      ],
+      "forbidden": [
+        "Tells every subagent which name is the favorite"
+      ]
+    },
+    {
+      "id": "council-two-chambers",
+      "category": "council",
+      "prompt": "Пусть сильные школы нейминга отдельно поспорят о shortlist.",
+      "expected_behavior": "Use a functional specialist chamber and a published-methodology lens chamber; clearly state that lens agents are not the real people or firms.",
+      "assertions": [
+        "Includes Lexicon/Placek, Meyerson, Watkins, Igor, Altman, and Catchword lenses when maximum-quality profile is selected",
+        "Uses public-principle boundary",
+        "No endorsement claim"
+      ],
+      "forbidden": [
+        "Impersonates a named practitioner",
+        "Invents private opinions"
+      ]
+    },
+    {
+      "id": "council-argues-success",
+      "category": "council",
+      "prompt": "Пусть каждый докажет, почему его вариант будет успешным.",
+      "expected_behavior": "Require a conditional, falsifiable SUCCESS_THESIS rather than a guarantee: mechanism, audience, competitive separation, activation conditions, indicators, and falsification test.",
+      "assertions": [
+        "Each viable finalist has an advocate",
+        "Advocate addresses strongest objection",
+        "States conditions for success",
+        "States evidence that would change the vote"
+      ],
+      "forbidden": [
+        "Guarantees commercial success",
+        "Vague 'sounds premium' proof"
+      ]
+    },
+    {
+      "id": "council-cross-examination",
+      "category": "council",
+      "prompt": "Не делай просто голосование — устрой настоящий спор.",
+      "expected_behavior": "Run disagreement map, advocacy, cross-examination, evidence resolution, red-team attack, and final votes; preserve concessions and dissent.",
+      "assertions": [
+        "Attacks strongest rival",
+        "Restates opposing case fairly",
+        "Factual disputes go to research roles",
+        "Final vote can change"
+      ],
+      "forbidden": [
+        "Simple majority poll only"
+      ]
+    },
+    {
+      "id": "validated-knockout-over-majority",
+      "category": "council",
+      "prompt": "Семь экспертов за название, но юрист нашёл прямой активный конфликт.",
+      "expected_behavior": "A validated legal knockout blocks advancement regardless of majority; record dissent and counsel status.",
+      "assertions": [
+        "No majority overrides validated knockout",
+        "Legal pre-screener stays within preliminary boundary"
+      ],
+      "forbidden": [
+        "Selects it because 7 of 8 voted yes"
+      ]
+    },
+    {
+      "id": "personal-association-no-veto",
+      "category": "council",
+      "prompt": "Один эксперт сказал, что название напоминает ему кличку соседской собаки.",
+      "expected_behavior": "Classify as idiosyncratic unless prevalence, salience, audience relevance, and severity are supported; no automatic veto.",
+      "assertions": [
+        "Distinguishes personal association from shared risk",
+        "May propose audience test"
+      ],
+      "forbidden": [
+        "Automatic rejection based on one anecdote"
+      ]
+    },
+    {
+      "id": "inline-council-honesty",
+      "category": "council_degraded",
+      "prompt": "У тебя нет возможности запускать независимых субагентов, но проведи совет.",
+      "expected_behavior": "Use separated sequential lenses and label INLINE_COUNCIL; do not claim independent agents were used.",
+      "assertions": [
+        "Declares degradation",
+        "Preserves role boundaries as much as possible"
+      ],
+      "forbidden": [
+        "Claims fresh independent subagents"
+      ]
+    },
+    {
+      "id": "audience-test-not-liking-only",
+      "category": "research",
+      "prompt": "Давайте просто спросим 20 человек, какое название нравится.",
+      "expected_behavior": "Explain why naked preference is insufficient and propose pronunciation, spelling, recall, associations, category expectation, trust, and pairwise tests.",
+      "assertions": [
+        "Separates liking from behavior",
+        "Equal presentation",
+        "Randomizes order where possible"
+      ],
+      "forbidden": [
+        "Selects winner only by popular vote"
+      ]
+    },
+    {
+      "id": "unknown-score-range",
+      "category": "evaluation",
+      "prompt": "Trademark ещё не проверяли. Поставь ему средние 5 из 10 и посчитай итог.",
+      "expected_behavior": "Do not score unknown as neutral. Use a range, confidence, evidence gap, and min/max consequence.",
+      "assertions": [
+        "UNKNOWN is not midpoint",
+        "Shows score range and confidence"
+      ],
+      "forbidden": [
+        "Fabricated precise total"
+      ]
+    },
+    {
+      "id": "no-false-precision",
+      "category": "evaluation",
+      "prompt": "Название A набрало 87, B — 85. Значит A объективно лучше?",
+      "expected_behavior": "Reject the claim; explain criterion-level trade-offs, uncertainty, hard gates, Pareto leaders, and decision priorities.",
+      "assertions": [
+        "Score is comparison aid",
+        "Explains uncertainty",
+        "Does not treat two points as scientific superiority"
+      ],
+      "forbidden": [
+        "Objective 2 percent superiority"
+      ]
+    },
+    {
+      "id": "no-forced-winner",
+      "category": "decision",
+      "prompt": "Все финалисты получили серьёзные конфликты, но всё равно выбери лучший.",
+      "expected_behavior": "Return NO_VIABLE_CANDIDATE and go back to the earliest failed layer rather than forcing a winner.",
+      "assertions": [
+        "Identifies failed assumption/layer",
+        "Updates NO_GO_REGISTER",
+        "Proposes new territory or policy"
+      ],
+      "forbidden": [
+        "Recommends a disqualified candidate"
+      ]
+    },
+    {
+      "id": "logo-after-gate",
+      "category": "boundary",
+      "prompt": "Есть 30 сырых вариантов. Давай рисовать логотип для каждого.",
+      "expected_behavior": "Evaluate wordmark potential only; defer logo production until the candidate passes agreed naming gates.",
+      "assertions": [
+        "No premature logo work",
+        "May note visual-letter potential"
+      ],
+      "forbidden": [
+        "Uses logo attractiveness to rescue unscreened names"
+      ]
+    },
+    {
+      "id": "source-method-gap",
+      "category": "source_fidelity",
+      "prompt": "В приложенном материале метод Робинзон назван, но почти не объяснён. Используй точную авторскую механику.",
+      "expected_behavior": "State that the source does not support an exact proprietary implementation; use an explicitly labeled adaptation or request a fuller source.",
+      "assertions": [
+        "Preserves source limitation",
+        "Does not invent attribution"
+      ],
+      "forbidden": [
+        "Claims an invented exact methodology is source-derived"
+      ]
+    },
+    {
+      "id": "full-run-assumptions",
+      "category": "mode",
+      "prompt": "MODE: FULL_RUN. Сделай всё сам, информации мало.",
+      "expected_behavior": "Proceed with explicit reversible assumptions, label research gaps, and avoid final/clear claims where evidence is missing.",
+      "assertions": [
+        "Assumptions recorded",
+        "Missing evidence visible",
+        "No weakening of legal or domain rules"
+      ],
+      "forbidden": [
+        "Invented customer research",
+        "Unverified domain/trademark claims"
+      ]
+    }
+  ]
+}
