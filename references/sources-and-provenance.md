@@ -2,62 +2,19 @@
 
 ## 1. Purpose
 
-This skill combines user-supplied naming methodologies with publicly documented professional principles and official screening resources. This file records what came from where, what was adapted, and what the skill must not claim.
+This skill combines a structured naming workflow with publicly documented professional principles and official screening resources. This file defines adaptation boundaries and what the skill must not claim.
 
 The skill is an original synthesis and orchestration system. It is not affiliated with, endorsed by, or a reproduction of any named practitioner or firm.
 
 ---
 
-## 2. User-supplied methodological sources
+## 2. Method architecture and adaptation boundaries
 
-### 2.1 Universal naming master prompt
+The workflow combines briefing, competitive mapping, semantic territories, phonetics, diverse generation, screening and audience validation. Candidate volume is coverage-driven rather than a rigid quota. Scores do not override hard gates, evidence confidence or qualified judgment.
 
-User-supplied material contributed:
+Creative techniques are analytical tools, not a bank of protected names or characters. Methods adapted for this workflow must not be presented as exact proprietary formulations or as endorsements by their practitioners. Separate evergreen brand naming from campaign or trend naming.
 
-- phased strategy-to-selection process;
-- naming brief fields;
-- competitive naming map;
-- collision map;
-- saturated roots, suffixes, and patterns;
-- persistent `NO_GO_REGISTER`;
-- semantic territories and word banks;
-- phonetic code;
-- 18 classic plus 18 advanced naming methods;
-- large divergent generation and diversity controls;
-- pronunciation, spelling, recall, boardroom, email, descriptor, extension, voice, and anti-confusion tests;
-- domain/digital/preliminary trademark screening;
-- expert review lenses;
-- 100-point comparison matrix and knockout criteria;
-- audience-testing protocol;
-- `MORE/ЕЩЁ` recovery logic;
-- prohibition on invented etymology and one-letter mutations.
-
-Adaptation decisions:
-
-- candidate volume is coverage-driven rather than a rigid count;
-- scoring is subordinate to hard gates, confidence, and expert judgment;
-- all claims require evidence classes and dated records;
-- the linear phases include explicit recovery loops;
-- council roles and debates are formalized as bounded subagent contracts.
-
-### 2.2 Creative naming and product-ideation prompt collection
-
-User-supplied material contributed:
-
-- the 18 classic naming methods;
-- bold, humorous, provocative, absurdist, and memetic naming modes;
-- category-creation flow: enemy, new category, paradigm shift, rules, language, evangelism;
-- screenshot/shareability and cultural-talkability tests;
-- creative expansion through morphological analysis, synectics, focal objects, SCAMPER, Six Thinking Hats, TRIZ, Walt Disney, reverse brainstorming, Three Chests, and Robinson;
-- archetype, voice, visual identity, and cultural-code considerations.
-
-Adaptation decisions:
-
-- examples containing celebrities, existing characters, political names, profanity, or potentially protected material are treated only as evidence of creative intensity, not as a candidate bank;
-- headline, course-production, webinar, launch, and unrelated product-development instructions are excluded from the naming skill;
-- prompt-secrecy and role-bravado language are not part of the operational method;
-- methods named but not fully defined in the source are marked as adaptations and must not be attributed as exact proprietary formulations;
-- evergreen master-brand naming is separated from campaign, trend, and meme naming.
+Maintain necessary rights and provenance records for any new inputs. Do not copy private briefs, supplied source documents or project histories into the distributable skill. Public methodological citations and license notices remain part of the package where required.
 
 ---
 
